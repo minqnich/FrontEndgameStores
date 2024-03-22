@@ -1,0 +1,103 @@
+@import url("http://fonts.gooogleapis.com/css2?family=Poppins:wght@300;400;500;60;700;800;900&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    min-height: 100vh;
+    background: rgb(3,2,18);
+    background: linear-gradient(180deg, rgba(3,2,18,1) 0%, rgba(6,43,157,1) 100%);
+    background-size: cover;
+    background-position: center;
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+.logo{
+    font-size: 32px;
+    color: black;
+    text-decoration: none;
+    font-weight: 700;           
+}
+.navbar a{
+    position: relative;
+    font-size: 18px;
+    color: gray;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 40px;
+}
+.navbar a::before{
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: .3s;
+}
+.navbar a:hover:before{
+    width: 100%;
+}
+.qty_label{
+    position: absolute;
+    top: -2px;
+    right: 80px;
+    color: red;
+    padding: 02px 7px;
+    display: none;
+}
+/* cart box inside the navbar */
+.cart_box{
+    position: absolute;
+    top:80px;
+    right: 0;
+    background-color: white; 
+    width: 380px;
+    padding: 1.5rem;
+    box-shadow: 0 05px 10px var(--verydark);
+    border-radius: 05px;
+    display: none;
+}
+.cart_box.display{
+    display: block;
+}
+.cart_box .box_header{
+    font-size: 2rem;
+    font-weight: 600;
+    position: relative;
+}
+.cart_box .box_header::after{
+    position:absolute;
+    content: "";
+    left: 0;
+    bottom: -10px;
+    width: 100%;
+    height: 3px;
+    background-color: lightgray;
+}
+
+.imgincart{
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+}
+
+.imageee{
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+}

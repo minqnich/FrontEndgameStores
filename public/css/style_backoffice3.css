@@ -1,0 +1,154 @@
+@import url("http://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body{
+  min-height: 100vh;
+  background: rgb(3,2,18);
+  background: linear-gradient(180deg, rgba(3,2,18,1) 0%, rgba(6,43,157,1) 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 100px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 32px;
+  color: black;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.navbar a {
+  position: relative;
+  font-size: 18px;
+  color: black;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 40px;
+}
+
+.navbar a::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: .3s;
+}
+
+.navbar a:hover:before {
+  width: 100%;
+}
+
+.qty_label {
+  position: absolute;
+  top: -2px;
+  right: 80px;
+  color: red;
+  padding: 02px 7px;
+  display: none;
+}
+
+/* info */
+
+.headline {
+  color: white;
+  margin-top: 140px;
+  margin-left: 120px;
+  margin-bottom: 2%;
+  font-size: 30px;
+}
+
+.headline-container {
+  display: flex;
+  align-items: center;
+}
+
+.headline-container button {
+  margin-top: 100px;
+  margin-left: 20px;
+  font-size: 30px;
+  padding: 5px 15px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.headline-container button:hover {
+  background-color: #0056b3;
+}
+
+.headline-product{
+  color: white;
+  margin-top: 30px;
+  margin-left: 120px;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.row img{
+  width: 250px;
+  height: 250px;
+  margin-left: 120px;
+}
+
+.btn{
+  margin-top: 25px;
+  font-size: 20px;
+}
+
+.text-product{
+  color: white;
+  margin-top: 30px;
+  margin-left: 120px;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.product-container {
+  display: flex;
+  align-items: center;
+}
+
+.product-container button{
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+.add-button{
+  display: flex;
+  align-items: center;
+  margin-top: 100px;
+  margin-left: 20px;
+  font-size: 30px;
+  padding: 5px 15px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+

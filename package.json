@@ -1,0 +1,24 @@
+{
+  "name": "test-pj-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "login.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "debug": "^4.3.4",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "lodash": "^4.17.21",
+    "mysql2": "^3.9.1",
+    "sweetalert2": "^11.10.5"
+  },
+  "devDependencies": {
+    "daisyui": "^4.7.2"
+  }
+}

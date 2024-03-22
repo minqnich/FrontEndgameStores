@@ -1,0 +1,116 @@
+@import url("http://fonts.gooogleapis.com/css2?family=Poppins:wght@300;400;500;60;700;800;900&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+}
+
+.contact-container{
+    display: flex;
+    margin: 155px 0px 0px 100px;
+    margin-bottom: 0px;
+    max-width: 960px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    background: #fff;
+    box-shadow: 0 0 1rem hsla(0 0 0/16%);
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.form-container{
+    padding: 20px; 
+}
+
+.form-container h3{
+    font-size: 60px;
+    margin-bottom: 1.5%;
+}
+
+.contact-form{
+    display: grid;
+    row-gap: 1rem;
+    color: black;
+}
+
+.contact-form input, .contact-form textarea{
+    width: 100%;
+    border: none;
+    outline: none;
+    background:#ececec;
+    padding: 10px;
+    font-size: 0.9rem;
+    color: #fff;
+    border-radius: 0.4rem;
+}
+
+.contact-form textarea{
+    resize: none;
+    height: 200px;
+}
+
+.contact-form .send-button {
+    border: none;
+    outline: none;
+    background: #007bff;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.contact-form .send-button:hover {
+    background: #212529;
+    text-decoration: none;
+    transition: 0.3s all linear;
+}
+
+/* responsive size */
+@media (max-width:964px) {
+    .contact-container{
+        margin: 0 auto;
+        width: 90%;
+
+    }
+}
+
+@media (max-width:600px) {
+    .contact-container{
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 20rem !important;
+    }
+    #map{
+        height: 400px;
+    }
+}
+
+footer {
+    background-color: #5498ff; /* Background color for the footer */
+    text-align: center;
+    margin-top: 50px; /* Adjust this value as needed */
+}
+
+.footerContainer {
+    width: 100%;
+    height: 180px;
+    color: #000000;
+    margin-top: 100px; /* Adjust this value as needed */
+}

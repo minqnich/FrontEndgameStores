@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Management</title>
+    <link rel="stylesheet" href="/css/style_backoffice.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JavaScript Bundle (Bootstrap JS และ Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+
+  </head>
+
+  <body>
+    <header class="header">
+      <a href="#" class="logo"
+        ><img src="img/PS5.png" alt="logo" width="150" height="50"
+      /></a>
+      <nav class="navbar">
+        <div class="dropdown">
+          <a
+            class="dropdown-toggle"
+            href="#"
+            role="button"
+            id="dropdownMenuLink"
+            data-bs-toggle="dropdown"
+          >
+            ADMIN
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <li><a class="dropdown-item" href="/categoryManage">Category Management</a></li>
+            <li>
+              <a class="dropdown-item" href="/productCategory"
+                >Product Management</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/saleHistory"
+                >Sales History</a
+              >
+            </li>
+          </ul>
+        </div>
+        <a href="/login">LOG OUT</a>
+      </nav>
+    </header>
+
+    
+    <div class="product-container">
+        <h2 class="headline-product fw-bolder">All of product</h2>
+        <button class="add-button" data-bs-toggle="modal" data-bs-target="#addProductModal">+</button>
+      </div>
+      
+      <div class="bg-categories">
+        <div class="container-fluid row">
+          <div class="row row-cols-lg-3 row-cols-md-4 row-cols-sm-6">
+            <% products.forEach(product => { %>
+              <div class="col mb-5 position-relative" id="product_<%= product.id %>">
+                <div class="card" style="width: 18rem;">
+                  <img class="card-img-top" src="<%= product.product_images %>" alt="<%= product.product_name %>">
+                  <div class="card-body">
+                    <h5 class="card-title text-center fs-5 mt-3 text-black"><%= product.product_name %></h5>
+                    <div class="btn-group position-absolute top-0 start-50 translate-middle pb-4">
+                      <button class="btn btn-secondary" onclick="openEditModal('<%= product.id %>')">Edit</button>
+                      <button class="btn btn-danger" onclick="deleteProduct('<%= product.id %>')">Delete</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      </div>
+
+
+ <!-- Modal for adding product -->
+ <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="addProductForm">
+          <div class="mb-3">
+            <label for="productCategory" class="form-label">Product Category</label>
+            <select class="form-select" id="productCategory" name="productCategory" required>
+              <option value="" selected disabled>Select Category</option>
+              <% categories.forEach(category => { %>
+                <option value="<%= category.id %>"><%= category.category_name %></option>
+              <% }); %>                  
+            </select>
+          </div>            
+          <div class="mb-3">
+            <label for="productName" class="form-label">Product Name</label>
+            <input type="text" class="form-control" id="productName" name="productName" required>
+          </div>
+          <div class="mb-3">
+            <label for="productDescription" class="form-label">Product Description</label>
+            <textarea class="form-control" id="productDescription" name="productDescription" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="productImages" class="form-label">Product Images</label>
+            <input type="text" class="form-control" id="productImages" name="productImages" required>
+          </div>
+          <div class="mb-3">
+            <label for="productPrice" class="form-label">Product Price</label>
+            <input type="number" class="form-control" id="productPrice" name="productPrice" step="0.01" required>
+          </div>
+          <div class="mb-3">
+            <label for="productPricePromotion" class="form-label">Product Price Promotion</label>
+            <input type="number" class="form-control" id="productPricePromotion" name="productPricePromotion" step="0.01" required>
+          </div>
+          <div class="mb-3">
+            <label for="productSalesCount" class="form-label">Product Sales Count</label>
+            <input type="number" class="form-control" id="productSalesCount" name="productSalesCount" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Edit Product -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editProductModalLabel">Edit Product Information</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editProductForm">
+          <input type="hidden" id="editProductId" name="editProductId">
+          <div class="mb-3">
+            <label for="editProductCategory" class="form-label">Product Category</label>
+            <select class="form-select" id="editProductCategory" name="editProductCategory">
+              <% categories.forEach(category => { %>
+                <option value="<%= category.id %>"><%= category.category_name %></option>
+              <% }); %>
+            </select>              
+          </div>
+          <div class="mb-3">
+            <label for="editProductName" class="form-label">Product Name</label>
+            <input type="text" class="form-control" id="editProductName" name="editProductName" required>
+          </div>
+          <div class="mb-3">
+            <label for="editProductDescription" class="form-label">Product Description</label>
+            <textarea class="form-control" id="editProductDescription" name="editProductDescription" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="editProductImages" class="form-label">Product Images</label>
+            <input type="text" class="form-control" id="editProductImages" name="editProductImages" required>
+          </div>
+          <div class="mb-3">
+            <label for="editProductPrice" class="form-label">Product Price</label>
+            <input type="number" class="form-control" id="editProductPrice" name="editProductPrice" step="0.01" required>
+          </div>
+          <div class="mb-3">
+            <label for="editProductPricePromotion" class="form-label">Product Price Promotion</label>
+            <input type="number" class="form-control" id="editProductPricePromotion" name="editProductPricePromotion" step="0.01" required>
+          </div>
+          <div class="mb-3">
+            <label for="editProductSalesCount" class="form-label">Product Sales Count</label>
+            <input type="number" class="form-control" id="editProductSalesCount" name="editProductSalesCount" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById('addProductForm').addEventListener('submit', async function (event) {
+      event.preventDefault();
+      const productName = document.getElementById('productName').value;
+      const productDescription = document.getElementById('productDescription').value;
+      const productImages = document.getElementById('productImages').value;
+      const productPrice = document.getElementById('productPrice').value;
+      const productPricePromotion = document.getElementById('productPricePromotion').value;
+      const productSalesCount = document.getElementById('productSalesCount').value;
+      const productCategory = document.getElementById('productCategory').value; 
+  
+      try {
+        const response = await fetch('/api/addProduct', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            productName,
+            productDescription,
+            productImages,
+            productPrice,
+            productPricePromotion,
+            productSalesCount,
+            productCategory
+          })
+        });
+  
+        if (!response.ok) {
+          throw new Error('Failed to add product');
+        }
+  
+        alert('Product added successfully');
+        $('#addProductModal').modal('hide');
+        window.location.reload();
+      } catch (error) {
+        console.error('Error adding product:', error);
+        alert('Failed to add product');
+      }
+    });
+  });
+  
+  
+  function openEditModal(productId) {
+    // Start fetching product information from the API using the Fetch API.
+          fetch(`/api/products/${productId}`)
+              .then(response => {
+                // Check the status of the API call
+                  if (!response.ok) {
+                      throw new Error('Failed to fetch product data');
+                  }
+                  // Convert received data to JSON.
+                  return response.json();
+              })
+              .then(productData => {
+      // Fill the form fields with product data
+      document.getElementById('editProductName').value = productData.product_name;
+      document.getElementById('editProductDescription').value = productData.product_description;
+      document.getElementById('editProductImages').value = productData.product_images;
+      document.getElementById('editProductPrice').value = productData.product_price;
+      document.getElementById('editProductPricePromotion').value = productData.product_price_promotion;
+      document.getElementById('editProductSalesCount').value = productData.product_sales_count;
+      document.getElementById('editProductId').value = productId; 
+      document.getElementById('editProductCategory').value = productData.category_id; 
+      console.log(productData.category_id)
+      // Show Modal for editing product information
+      $('#editProductModal').modal('show'); 
+  })
+              .catch(error => {
+                // Handle errors in retrieving product information
+                  console.error('Error fetching product data:', error);
+                  alert('Failed to fetch product data');
+              });
+      }
+      
+      // Add event listener for edit product form submission
+      document.getElementById('editProductForm').addEventListener('submit', async function (event) {
+          event.preventDefault();
+          // Get form data
+          const productId = document.getElementById('editProductId').value;
+          const productName = document.getElementById('editProductName').value;
+          const productDescription = document.getElementById('editProductDescription').value;
+          const productImages = document.getElementById('editProductImages').value;
+          const productPrice = document.getElementById('editProductPrice').value;
+          const productPricePromotion = document.getElementById('editProductPricePromotion').value;
+          const productSalesCount = document.getElementById('editProductSalesCount').value;
+          const productCategory = document.getElementById('editProductCategory').value; 
+  
+          try {
+              // Send edit product request to the server
+              const response = await fetch(`/api/products/${productId}`, {
+                  method: 'PUT',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                      productName,
+                      productDescription,
+                      productImages,
+                      productPrice,
+                      productPricePromotion,
+                      productSalesCount,
+                      productCategory
+                  })
+              });
+  
+              if (!response.ok) {
+                  throw new Error('Failed to update product');
+              }
+              // If success, close the modal and reload the page
+              alert('Product updated successfully');
+              $('#editProductModal').modal('hide');
+              window.location.reload();
+          } catch (error) {
+              console.error('Error updating product:', error);
+              alert('Failed to update product');
+          }
+      });
+  
+    function deleteProduct(productId) {
+          // Confirm with the user before deleting the product
+          if (confirm('Are you sure you want to delete this product?')) {
+              // Send an AJAX request to delete the product
+              $.ajax({
+                  url: '/api/products/' + productId,
+                  type: 'DELETE',
+                  success: function () {
+                      // If deletion is successful, remove the product from the HTML view
+                      $('#product_' + productId).remove();
+                      alert('Product deleted successfully');
+                  },
+                  error: function () {
+                      alert('Failed to delete product');
+                  }
+              });
+          }
+      }
+  </script>
+  
+
+
+</body>
+</html>

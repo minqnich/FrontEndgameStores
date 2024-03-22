@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>product</title>
+    <link rel="stylesheet" href="/css/style_header.css" />
+    <link rel="stylesheet" href="/css/style_footer.css" />
+    <link rel="stylesheet" href="/css/style_product.css" />
+
+    <style>
+      .pro_content {
+        max-height: 300px; /* Adjust the maximum height as needed */
+        overflow-y: auto; /* Enable vertical scrolling */
+      }
+    </style>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <a href="/home" class="logo"
+        ><img src="img/PS5.png" alt="logo" width="200" height="100"
+      /></a>
+      <nav class="navbar">
+        <a href="/home">Home</a>
+        <!-- bootstrap -->
+        <div class="dropdown">
+          <a
+            class="dropdown-toggle"
+            href="#"
+            role="button"
+            id="dropdownMenuLink"
+            data-bs-toggle="dropdown"
+          >
+            Product
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <li><a class="dropdown-item" href="/consoles">Consoles</a></li>
+            <li><a class="dropdown-item" href="/games">Games</a></li>
+            <li>
+              <a class="dropdown-item" href="/accessories">Accessories</a>
+            </li>
+          </ul>
+        </div>
+        <span class="qty_label">3</span>
+        <a href="/contact">CONTACT US</a>
+        <a href="#" id="cartBtn" class="cart">Cart</a>
+        <a href="/login">Log out</a>
+      </nav>
+
+      <div class="cart_box mb-3">
+        <p class="box_header">Cart</p>
+        <div class="pro_content">
+          <div class="p_details">
+            <p class="pro_txt"><%= product.product_name %></p>
+            <p class="price">
+              $<%= product.product_price_promotion %> <span>x</span>
+              <span class="times"> </span>
+              <span class="total"></span>
+            </p>
+          </div>
+        </div>
+        <div class="cart_empty">
+          <p>Your Cart is empty</p>
+        </div>
+
+        <span class="total"
+          >Total Price : <span id="totalPriceValue">$0</span></span
+        >
+        <br />
+        <br />
+        <button type="button" class="checkout-button btn btn-outline-success">
+          CHECKOUT
+        </button>
+      </div>
+    </header>
+
+    <!-- product -->
+    <main id="product">
+      <div class="container">
+        <div class="product_wrapper">
+          <div class="product_img">
+            <div class="img_thumbnail">
+              <img
+                src="<%= product.product_images %>"
+                alt="<%= product.product_name %>"
+              />
+            </div>
+          </div>
+          <div class="product_content">
+            <p class="company_txt">Game Shop</p>
+            <span class="product_id" style="opacity: 0"><%=product.id %></span>
+            <h2><%= product.product_name %></h2>
+            <p class="product_desc"><%= product.product_description %></p>
+            <div class="price">
+              <% if (product.product_price_promotion) { %>
+              <div class="discount_price">
+                $<%= product.product_price_promotion %>
+              </div>
+              <% } else { %>
+              <div class="discount_price">$<%= product.product_price %></div>
+              <% } %>
+            </div>
+            <p class="total_price">$<%= product.product_price %></p>
+            <div class="btns">
+              <button type="button" class="decreament">-</button>
+              <button type="button" class="qty_number">1</button>
+              <button type="button" class="increament">+</button>
+            </div>
+            <button type="button" class="add_cart">
+              <i class="bx bxs-cart-add h1" style="width: 16px"></i>
+              <span class="" style="width: 70%">Add to cart</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footerContainer">
+        <div class="socialIcons">
+          <a herf=""><i class="bx bxl-facebook-circle"></i></a>
+          <a herf=""><i class="bx bxl-instagram-alt"></i></a>
+          <a herf=""><i class="bx bxl-twitter"></i></a>
+          <a herf=""><i class="bx bxl-youtube"></i></a>
+        </div>
+        <div class="footer">
+          <p>copy right &copy;2024;Designed by My Team</p>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      "use strict";
+      function removeDollarSign(str) {
+        if (str.startsWith("$")) {
+          return parseFloat(str.slice(1));
+        } else {
+          return parseFloat(str);
+        }
+      }
+      const cartBtn = document.querySelector("#cartBtn");
+      const cartBox = document.querySelector(".cart_box");
+      const checkout_button = document.querySelector(".checkout-button");
+      const basedPrice = document.querySelector(".total_price");
+      const discountedPrice = document.querySelector(".discount_price");
+      const productQtyBox = document.querySelector(".qty_number");
+      const increamentBtn = document.querySelector(".increament");
+      const decreamentBtn = document.querySelector(".decreament");
+      cartBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        cartBox.classList.toggle("display");
+      });
+      const productPrice = removeDollarSign(basedPrice.innerHTML);
+      const discountPrice = removeDollarSign(discountedPrice.innerHTML);
+      increamentBtn.addEventListener("click", () => {
+        productQtyBox.innerHTML++;
+        updatePrices();
+      });
+      decreamentBtn.addEventListener("click", () => {
+        if (productQtyBox.innerHTML > 1) {
+          productQtyBox.innerHTML--;
+          updatePrices();
+        }
+      });
+      function updatePrices() {
+        const calculatedBasedPrice = productPrice * productQtyBox.innerHTML;
+        const calculatedDiscountedPrice =
+          discountPrice * productQtyBox.innerHTML;
+        basedPrice.innerHTML = "$" + calculatedBasedPrice.toFixed(2);
+        discountedPrice.innerHTML = "$" + calculatedDiscountedPrice.toFixed(2);
+      }
+
+      const ProContainer = document.querySelector(".pro_content");
+      const addCart = document.querySelector(".add_cart");
+      const qtyLabel = document.querySelector(".qty_label");
+      const cart_empty = document.querySelector(".cart_empty");
+      const remove = document.querySelector(".trash");
+
+      document
+        .querySelector(".add_cart")
+        .addEventListener("click", async () => {
+          const productId = document.querySelector(".product_id").innerHTML; 
+          try {
+            const response = await fetch(`/api/add_to_cart/${productId}`, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+
+            if (!response.ok) {
+              throw new Error("Failed to add product to cart");
+            }
+
+            const data = await response.json();
+            data.quantity = parseInt(productQtyBox.innerHTML);
+            data_array.push(data);
+            console.log("Product added to cart:", data);
+            updateCartDisplay();
+          } catch (error) {
+            console.error("Error adding product to cart:", error);
+          }
+        });
+      checkout_button.addEventListener("click", () => {
+        window.location.href = "/success";
+      });
+
+      const data_array = [];
+
+      function updateCartDisplay() {
+        const cartBox = document.querySelector(".pro_content");
+        const qtyLabel = document.querySelector(".qty_label");
+        const multiplied_price = [];
+        cartBox.innerHTML = "";
+        let price = 0;
+        let total_price = 0;
+        for (let i = 0; i < data_array.length; i++) {
+          total_price +=
+            data_array[i].product_price_promotion * data_array[i].quantity;
+        }
+        data_array.forEach((product) => {
+          const html = `
+            <div class="p_details">
+                <div class="trash">
+                    <i id="trashIcon" style="position:absolute; right:30px; font-size=20px; " class="bx bxs-trash"></i>
+                </div>
+                <img class="imageee rounded mx-auto d-block " src="${
+                  product.product_images
+                }">
+                <p class="pro_txt text-center mt-3 fs-5 fw-2 text-dark">${
+                  product.product_name
+                } <span>x</span>  <span class="times">${
+            product.quantity
+          }</span></p>
+                <p class="price text-center text-danger">$${
+                  product.product_price_promotion * product.quantity
+                } </p>
+            </div>
+            <hr>
+        `;
+          const newCartBox = document.createElement("div");
+          newCartBox.classList.add("pro_content");
+          newCartBox.innerHTML = html;
+          cartBox.appendChild(newCartBox);
+        });
+
+        qtyLabel.style.display = "block";
+        qtyLabel.innerHTML = data_array.length;
+        cartBox.classList.add("display");
+        const totalPriceElement = document.getElementById("totalPriceValue");
+        totalPriceElement.textContent = "$" + total_price;
+
+        console.log(total_price);
+      }
+      document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("total")) {
+          updateCartDisplay();
+        }
+      });
+    </script>
+  </body>
+</html>

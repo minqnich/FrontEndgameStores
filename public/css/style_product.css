@@ -1,0 +1,234 @@
+@import url("http://fonts.gooogleapis.com/css2?family=Poppins:wght@300;400;500;60;700;800;900&display=swap");
+#product{
+    margin-top: 15rem;
+    width: 100%;
+    align-items: center;
+}
+.product_wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10rem;
+    width: 90%;
+}
+.checkout {
+    background-color:orange;
+    font-size: medium;
+    border-radius: 4px ;
+    border: 2px white;
+    margin-left: 65%;
+    padding: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    font-weight: 600;
+}
+.checkout:hover {
+    background-color:peru;
+}
+
+.product_img {
+    display: block;
+    width: 50%;
+    top: 200px
+}
+.product_img img{
+    display: block;
+    object-fit: cover;
+    width: 90%;
+    height: 90%;
+    border-radius: 30px  ;
+    border: solid 2px white;
+    cursor: pointer;
+    margin-left: auto;
+    margin-bottom: 25%;
+}
+.img_small{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    width: 90%;
+    height: 60%;
+    margin-left: auto;
+}
+
+
+.img_small img{
+    object-fit: cover;
+    width: 22%;
+}
+.img_small :active{
+    border: 2px solid orange;
+    opacity: 0.7;
+}
+.product_content{
+    width: 40%;
+    margin: 0 auto;   
+    align-content: center;
+}
+.company_txt{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+}
+.product_content h2{
+    font-size: 2rem;
+    margin: 1rem 0;
+    width: 60%;
+    color: white;
+}
+.product_desc{
+
+    margin: 2rem 0;
+    font-size: 1rem;
+    line-height: 1.56;
+    color:white;
+}
+.price {
+    display: flex;
+    -ms-flex-direction: row-reverse;
+}
+.price span {
+    display: block;
+}
+
+.discount_price{
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 25px;
+}
+.nomal_price{
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+}
+.discount{
+    font-weight: normal;
+    font-size: 1.5rem;
+    background-color: white;
+    padding: 0 0.5rem;
+    color: orange;
+    font-weight: 700;
+    margin-left: 1rem;
+    
+}
+.total_price{
+    text-decoration: line-through;
+    color: rgb(162, 162, 162);
+    margin: 1rem 0;
+    font-size: 22px;
+}
+.qty{
+    display: flex;
+    align-items: center;
+    margin-top: 3rem;
+}
+.btns{
+    justify-content: center;
+    align-items: center;
+}
+.btns button{
+    outline: none;
+    border: none;
+    background-color: gray;
+    color: orange;
+    padding: 0.7rem 1.2rem;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    font-size: 2rem;
+    left: 20%;
+}
+.btns button :active{
+    transform: scale(0.98);
+}
+.btns .qty_number{
+    color: black;
+    font-weight: 600;
+}
+.add_cart{
+    box-sizing: content-box;
+    outline: none;
+    border: none;
+    background-color: orange;
+    font-family:"Poppins", sans-serif ;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 5px;
+    margin:-4rem 15rem 10rem 15rem;
+    cursor: pointer;
+    width: 160px;
+    font-weight: 600;
+}
+
+.add_cart:hover {
+    background-color: burlywood;
+    font-weight: 600;
+}
+
+/* change cart size */
+.add_cart i{
+    margin-right: 1rem;
+    
+}
+/* modal */
+/* .modal{
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.modal::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0, 0.7);
+}
+.modal_wrapper{
+    width: 450px;
+    position: absolute;
+    top: 55%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+/* นาทีที่52 */
+/* .img_thumbnail_modal img{
+    object-fit: cover;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.img_small_modal{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+.img_small_modal{
+    object-fit: cover;
+    width: 100%;
+} */
+/* close icon */
+/* .close_icon{
+    position: absolute;
+    top: -20px;
+    right: 0;
+    cursor: pointer; 
+}  */
+@media (max-width:1000px) {
+    .product_wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14rem;
+        width: 90%;
+    }
+    
+}
